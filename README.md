@@ -5,7 +5,7 @@
 ## Installation
 
 ```bash
-yarn add @haydenbleasel/use-gamepad-events
+yarn add @beskar-labs/use-gamepad-events
 ```
 
 ## Usage
@@ -13,7 +13,7 @@ yarn add @haydenbleasel/use-gamepad-events
 Here's a simple example of how to use `useGamepadEvents` to listen for 'a' button presses:
 
 ```tsx
-import { useGamepadEvents } from '@haydenbleasel/use-gamepad-events';
+import { useGamepadEvents } from '@beskar-labs/use-gamepad-events';
 
 const App = () => {
   const gamepadEvents = useGamepadEvents({
