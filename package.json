@@ -46,9 +46,9 @@
     "tsup": "^6.4.0",
     "typescript": "^4.9.4"
   },
-  "prettier": "@haydenbleasel/harmony/prettier",
+  "prettier": "@beskar-labs/harmony/prettier",
   "stylelint": {
-    "extends": "@haydenbleasel/harmony/stylelint"
+    "extends": "@beskar-labs/harmony/stylelint"
   },
   "peerDependencies": {
     "react": "^18.2.0",
