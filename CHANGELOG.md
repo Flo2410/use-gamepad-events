@@ -1,3 +1,24 @@
+# v2.0.3 (Sat Apr 01 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Bump deps ([@haydenbleasel](https://github.com/haydenbleasel))
+
+#### 🔩 Dependency Updates
+
+- Bump jest from 29.3.1 to 29.4.1 [#36](https://github.com/beskar-co/use-gamepad-events/pull/36) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump eslint from 8.31.0 to 8.33.0 [#35](https://github.com/beskar-co/use-gamepad-events/pull/35) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @react-hookz/web from 20.0.3 to 22.0.0 [#34](https://github.com/beskar-co/use-gamepad-events/pull/34) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump typescript from 4.9.4 to 4.9.5 [#33](https://github.com/beskar-co/use-gamepad-events/pull/33) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/react from 18.0.26 to 18.0.27 [#32](https://github.com/beskar-co/use-gamepad-events/pull/32) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Hayden Bleasel ([@haydenbleasel](https://github.com/haydenbleasel))
+
+---
+
 # v1.0.6 (Sat Jan 14 2023)
 
 #### ⚠️ Pushed to `main`
