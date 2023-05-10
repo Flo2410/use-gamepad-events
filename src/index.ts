@@ -1,3 +1,4 @@
+/* eslint-disable id-length */
 import { useEventListener } from '@react-hookz/web';
 import { useCallback, useEffect, useState } from 'react';
 import isEqual from 'lodash.isequal';
@@ -44,10 +45,6 @@ const defaultState: GamepadState = {
   right: false,
   back: false,
 };
-
-let lastFiredButton: keyof GamepadState | null = null;
-// eslint-disable-next-line jest/require-hook
-let lastFiredTime = 0;
 
 const useGamepadEvents = (
   props?: UseGamepadEventsProps
@@ -191,22 +188,6 @@ const useGamepadEvents = (
     callback: (value: GamepadState[T]) => void
   ) => {
     if (isEqual(gamepadState[button], lastGamepadState[button])) return;
-
-    const now = Date.now();
-
-    if (!lastFiredButton || !lastFiredTime || lastFiredButton !== button) {
-      lastFiredButton = button;
-      lastFiredTime = now;
-      callback(gamepadState[button]);
-      return;
-    }
-
-    if (now - lastFiredTime < 100 && lastFiredButton === button) {
-      lastFiredTime = now;
-      return;
-    }
-
-    lastFiredTime = now;
     callback(gamepadState[button]);
   };
 
