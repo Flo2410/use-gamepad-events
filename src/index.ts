@@ -9,8 +9,10 @@ export type GamepadState = {
   x: boolean;
   y: boolean;
   l1: boolean;
+  l2: number;
   l3: boolean;
   r1: boolean;
+  r2: number;
   r3: boolean;
   share: boolean;
   options: boolean;
@@ -19,6 +21,13 @@ export type GamepadState = {
   left: boolean;
   right: boolean;
   back: boolean;
+  leftStick: GamepadJoystick;
+  rightStick: GamepadJoystick;
+};
+
+type GamepadJoystick = {
+  x: number;
+  y: number;
 };
 
 type UseGamepadEventsProps = {
@@ -34,8 +43,10 @@ const defaultState: GamepadState = {
   x: false,
   y: false,
   l1: false,
+  l2: 0,
   l3: false,
   r1: false,
+  r2: 0,
   r3: false,
   share: false,
   options: false,
@@ -44,6 +55,8 @@ const defaultState: GamepadState = {
   left: false,
   right: false,
   back: false,
+  leftStick: { x: 0, y: 0 },
+  rightStick: { x: 0, y: 0 },
 };
 
 const useGamepadEvents = (
@@ -78,14 +91,16 @@ const useGamepadEvents = (
         return;
       }
 
-      const newState = {
+      const newState: GamepadState = {
         a: activeGamepad.buttons[0].pressed,
         b: activeGamepad.buttons[1].pressed,
         x: activeGamepad.buttons[2].pressed,
         y: activeGamepad.buttons[3].pressed,
         l1: activeGamepad.buttons[4].pressed,
+        l2: Number(activeGamepad.buttons[6].value.toFixed(4)),
         l3: activeGamepad.buttons[10].pressed,
         r1: activeGamepad.buttons[5].pressed,
+        r2: Number(activeGamepad.buttons[7].value.toFixed(4)),
         r3: activeGamepad.buttons[11].pressed,
         share: activeGamepad.buttons[8].pressed,
         options: activeGamepad.buttons[9].pressed,
@@ -94,21 +109,27 @@ const useGamepadEvents = (
         left: activeGamepad.buttons[14].pressed,
         right: activeGamepad.buttons[15].pressed,
         back: activeGamepad.buttons[16].pressed,
+        leftStick: {
+          x:
+            activeGamepad.axes[0] < -0.08 || activeGamepad.axes[0] > 0.08
+              ? Number(activeGamepad.axes[0].toFixed(4))
+              : 0,
+          y:
+            activeGamepad.axes[1] < -0.08 || activeGamepad.axes[1] > 0.08
+              ? Number(activeGamepad.axes[1].toFixed(4))
+              : 0,
+        },
+        rightStick: {
+          x:
+            activeGamepad.axes[2] < -0.08 || activeGamepad.axes[2] > 0.08
+              ? Number(activeGamepad.axes[2].toFixed(4))
+              : 0,
+          y:
+            activeGamepad.axes[3] < -0.08 || activeGamepad.axes[3] > 0.08
+              ? Number(activeGamepad.axes[3].toFixed(4))
+              : 0,
+        },
       };
-
-      /*
-       * const leftStick = {
-       *   x: Number(activeGamepad.axes[0].toFixed(2)),
-       *   y: Number(activeGamepad.axes[1].toFixed(2)),
-       * };
-       */
-
-      /*
-       * const rightStick = {
-       *   x: Number(activeGamepad.axes[2].toFixed(2)),
-       *   y: Number(activeGamepad.axes[3].toFixed(2)),
-       * };
-       */
 
       if (JSON.stringify(newState) !== JSON.stringify(oldState)) {
         setlastGamepadState(oldState);
