@@ -51,7 +51,10 @@ let lastFiredTime = 0;
 const useGamepadEvents = (
   props?: UseGamepadEventsProps
 ): {
-  on: (event: keyof GamepadState, callback: () => void) => void;
+  on: <T extends keyof GamepadState>(
+    button: T,
+    callback: (value: GamepadState[T]) => void
+  ) => void;
 } => {
   const [gamepad, setGamepad] = useState<number | null>(null);
   const [gamepadState, setGamepadState] = useState<GamepadState>(defaultState);
@@ -179,7 +182,10 @@ const useGamepadEvents = (
     setRunning(true);
   }, [gameloop, gamepad, gamepadState, running]);
 
-  const on = (button: keyof GamepadState, callback: () => void) => {
+  const on = <T extends keyof GamepadState>(
+    button: T,
+    callback: (value: GamepadState[T]) => void
+  ) => {
     if (!gamepadState[button]) {
       return;
     }
@@ -189,7 +195,7 @@ const useGamepadEvents = (
     if (!lastFiredButton || !lastFiredTime || lastFiredButton !== button) {
       lastFiredButton = button;
       lastFiredTime = now;
-      callback();
+      callback(gamepadState[button]);
       return;
     }
 
@@ -199,7 +205,7 @@ const useGamepadEvents = (
     }
 
     lastFiredTime = now;
-    callback();
+    callback(gamepadState[button]);
   };
 
   return { on };
