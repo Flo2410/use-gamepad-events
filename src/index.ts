@@ -1,5 +1,6 @@
 import { useEventListener } from '@react-hookz/web';
 import { useCallback, useEffect, useState } from 'react';
+import isEqual from 'lodash.isequal';
 
 export type GamepadState = {
   a: boolean;
@@ -58,6 +59,8 @@ const useGamepadEvents = (
 } => {
   const [gamepad, setGamepad] = useState<number | null>(null);
   const [gamepadState, setGamepadState] = useState<GamepadState>(defaultState);
+  const [lastGamepadState, setlastGamepadState] =
+    useState<GamepadState>(defaultState);
   const [ready, setReady] = useState(false);
   const [running, setRunning] = useState(false);
   const { onReady, onLoop, onConnect, onDisconnect } = props ?? {};
@@ -111,6 +114,7 @@ const useGamepadEvents = (
        */
 
       if (JSON.stringify(newState) !== JSON.stringify(oldState)) {
+        setlastGamepadState(oldState);
         setGamepadState(newState);
       }
 
@@ -186,9 +190,7 @@ const useGamepadEvents = (
     button: T,
     callback: (value: GamepadState[T]) => void
   ) => {
-    if (!gamepadState[button]) {
-      return;
-    }
+    if (isEqual(gamepadState[button], lastGamepadState[button])) return;
 
     const now = Date.now();
 
