@@ -2,6 +2,7 @@
 import { useEventListener } from '@react-hookz/web';
 import { useCallback, useEffect, useState } from 'react';
 import isEqual from 'lodash.isequal';
+import debounce from 'lodash.debounce';
 
 export type GamepadState = {
   a: boolean;
@@ -204,12 +205,17 @@ const useGamepadEvents = (
     setRunning(true);
   }, [gameloop, gamepad, gamepadState, running]);
 
+  const debounced_on = useCallback(
+    debounce((callback: () => void) => callback(), 50, { maxWait: 50 }),
+    []
+  );
+
   const on = <T extends keyof GamepadState>(
     button: T,
     callback: (value: GamepadState[T]) => void
   ) => {
     if (isEqual(gamepadState[button], lastGamepadState[button])) return;
-    callback(gamepadState[button]);
+    debounced_on(() => callback(gamepadState[button]));
   };
 
   return { on };
