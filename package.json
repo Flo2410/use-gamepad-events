@@ -35,6 +35,8 @@
   "homepage": "https://github.com/beskar-co/use-gamepad-events#readme",
   "devDependencies": {
     "@beskar-labs/harmony": "^2.1.1",
+    "@types/lodash.debounce": "^4.0.7",
+    "@types/lodash.isequal": "^4.5.6",
     "@types/react": "^18.0.31",
     "@types/react-dom": "^18.0.11",
     "eslint": "^8.37.0",
@@ -55,6 +57,8 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
-    "@react-hookz/web": "^23.0.0"
+    "@react-hookz/web": "^23.0.0",
+    "lodash.debounce": "^4.0.8",
+    "lodash.isequal": "^4.5.0"
   }
 }
