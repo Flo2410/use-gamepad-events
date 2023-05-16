@@ -1,3 +1,15 @@
+# v2.0.5 (Tue May 16 2023)
+
+#### 🐛 Bug Fix
+
+- Adding support for analog inputs [#51](https://github.com/beskar-co/use-gamepad-events/pull/51) ([@Flo2410](https://github.com/Flo2410))
+
+#### Authors: 1
+
+- Florian Hye ([@Flo2410](https://github.com/Flo2410))
+
+---
+
 # v2.0.4 (Sat Apr 01 2023)
 
 #### ⚠️ Pushed to `main`
